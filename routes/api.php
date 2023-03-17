@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,13 @@ Route::prefix('v1')->group(function () {
         Route::get('category','list');
         Route::get('category/{id}','get');
         Route::delete('category/{id}','delete');
+    });
+
+    Route::controller(ImageController::class)->group(function () {
+        Route::post('image','create');
+        Route::post('image/{id}','update');
+        Route::get('image','list');
+        Route::get('image/{id}','get');
+        Route::delete('image/{id}','delete');
     });
 });

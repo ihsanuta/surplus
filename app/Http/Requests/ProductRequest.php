@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class CategoryRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
+            'category_id' => 'required|exists:category,id',
+            'image_id' => 'required|exists:image,id',
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'description' => 'required|string',
             'enable' => 'boolean'
         ];
     }
@@ -37,8 +40,14 @@ class CategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'category_id.required' => 'category id is required',
+            'category_id.exists' => 'category id must exists',
+            'image_id.required' => 'image id is required',
+            'image_id.exists' => 'image id must exists',
             'name.required' => 'name is required',
             'name.regex' => 'name must alphabet',
+            'description.required' => 'description is required',
+            'description.required' => 'description must string',
             'enable.boolean' => 'enable must boolean'
         ];
     }

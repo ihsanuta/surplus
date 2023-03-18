@@ -12,6 +12,14 @@ class CategoryController extends Controller
     public function __construct(){}
 
     public function create(CategoryRequest $request){
+        $exists = Category::where('name','=',$request->name)->first();
+        if($exists){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Create category unsuccessfull ',
+                'error' => "category exists",
+            ], 500);
+        }
         try {
             $data = Category::create([
                 'name' => $request->name,

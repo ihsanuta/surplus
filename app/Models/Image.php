@@ -29,7 +29,9 @@ class Image extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [];
+    protected $casts = [
+        'enable' => 'boolean'
+    ];
 
     /**
      * The attributes that are mass assignable.

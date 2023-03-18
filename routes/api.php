@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,13 @@ Route::prefix('v1')->group(function () {
         Route::get('image','list');
         Route::get('image/{id}','get');
         Route::delete('image/{id}','delete');
+    });
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::post('product','create');
+        Route::put('product/{id}','update');
+        Route::get('product','list');
+        Route::get('product/{id}','get');
+        Route::delete('product/{id}','delete');
     });
 });

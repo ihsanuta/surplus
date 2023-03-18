@@ -27,8 +27,8 @@ return new class extends Migration
         Schema::create('category_product', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('category_id');
-            $table->foreign('product_id')->references('id')->on('product');
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
         });
 
         Schema::create('image', function (Blueprint $table) {
@@ -41,8 +41,8 @@ return new class extends Migration
         Schema::create('product_image', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('image_id');
-            $table->foreign('product_id')->references('id')->on('product');
-            $table->foreign('image_id')->references('id')->on('image');
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
+            $table->foreign('image_id')->references('id')->on('image')->onDelete('cascade');
         });
 
     }
